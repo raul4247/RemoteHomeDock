@@ -7,10 +7,15 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { updateTCPAction } from '../actions/updateTCPAction'
 
+import setStorage from '../storage/storage'
+
 class ConfigScreen extends Component {
     constructor(props) {
         super(props)
         this.state = { ip: this.props.ip, port: this.props.port }
+    }
+    getData = async () => {
+        write
     }
     render() {
         return (
@@ -25,8 +30,12 @@ class ConfigScreen extends Component {
                     keyboardType={"numeric"}
                     value={this.state.port}
                 />
-                <TouchableOpacity onPress={() => this.props.updateIp(this.state.ip, this.state.port)}>
-                    <Text>UPDATE</Text>
+                <TouchableOpacity onPress={() => {
+                    setStorage(this.state.ip, this.state.port)
+                    this.props.updateIp(this.state.ip, this.state.port)
+                }}>
+
+                <Text>UPDATE</Text>
                 </TouchableOpacity>
                 <Text>{this.props.ip}</Text>
                 <Text>{this.props.port}</Text>
@@ -37,10 +46,10 @@ class ConfigScreen extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    updateIp: (ip, port)  => dispatch(updateTCPAction(ip, port)),
+    updateIp: (ip, port) => dispatch(updateTCPAction(ip, port)),
 })
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         ip: state.tcpState.ip,
         port: state.tcpState.port,
