@@ -10,6 +10,9 @@ class HomeScreen extends Component {
             .then(res => {
                 console.log(res.data)
             })
+            .catch(function (error) {
+                console.log('error')
+            })
     }
     render() {
         return (
