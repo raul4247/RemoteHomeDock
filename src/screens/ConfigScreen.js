@@ -30,6 +30,7 @@ class ConfigScreen extends Component {
                 </TouchableOpacity>
                 <Text>{this.props.ip}</Text>
                 <Text>{this.props.port}</Text>
+                <Scanner />
             </View>
         )
     }
